@@ -5,13 +5,12 @@ import (
 	"database/sql"
 	"reflect"
 
+	"github.com/jeyrce/gorm-dm8-driver/clauses"
 	"github.com/thoas/go-funk"
 	"gorm.io/gorm"
 	"gorm.io/gorm/callbacks"
 	"gorm.io/gorm/clause"
 	gormSchema "gorm.io/gorm/schema"
-
-	"github.com/nfjBill/gorm-driver-dm/clauses"
 )
 
 func Create(db *gorm.DB) {
@@ -79,8 +78,8 @@ func Create(db *gorm.DB) {
 			}
 			stmt.Build("INSERT", "VALUES")
 			// 返回自增主键
-			//stmt.Build("INSERT", "VALUES", "RETURNING")
-			//if hasDefaultValues {
+			// stmt.Build("INSERT", "VALUES", "RETURNING")
+			// if hasDefaultValues {
 			//	stmt.WriteString(" INTO ")
 			//	for idx, field := range schema.FieldsWithDefaultDBValue {
 			//		if idx > 0 {
@@ -89,7 +88,7 @@ func Create(db *gorm.DB) {
 			//		boundVars[field.Name] = len(stmt.Vars)
 			//		stmt.AddVar(stmt, sql.Out{Dest: reflect.New(field.FieldType).Interface()})
 			//	}
-			//}
+			// }
 		}
 
 		if !db.DryRun {

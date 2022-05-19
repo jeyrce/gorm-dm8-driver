@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nfjBill/gorm-driver-dm/dmr/util"
+	"github.com/jeyrce/gorm-dm8-driver/dmr/util"
 )
 
 const (

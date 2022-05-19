@@ -12,7 +12,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/nfjBill/gorm-driver-dm/dmr/util"
+	"github.com/jeyrce/gorm-dm8-driver/dmr/util"
 )
 
 const SQL_GET_DSC_EP_SITE = "SELECT " +
@@ -126,7 +126,7 @@ func (rf *reconnectFilter) checkAndRecover(conn *DmConnection) error {
 	return conn.reconnect()
 }
 
-//DmDriver
+// DmDriver
 func (rf *reconnectFilter) DmDriverOpen(filterChain *filterChain, d *DmDriver, dsn string) (*DmConnection, error) {
 	return filterChain.DmDriverOpen(d, dsn)
 }
@@ -135,7 +135,7 @@ func (rf *reconnectFilter) DmDriverOpenConnector(filterChain *filterChain, d *Dm
 	return filterChain.DmDriverOpenConnector(d, dsn)
 }
 
-//DmConnector
+// DmConnector
 func (rf *reconnectFilter) DmConnectorConnect(filterChain *filterChain, c *DmConnector, ctx context.Context) (*DmConnection, error) {
 	return filterChain.DmConnectorConnect(c, ctx)
 }
@@ -144,7 +144,7 @@ func (rf *reconnectFilter) DmConnectorDriver(filterChain *filterChain, c *DmConn
 	return filterChain.DmConnectorDriver(c)
 }
 
-//DmConnection
+// DmConnection
 func (rf *reconnectFilter) DmConnectionBegin(filterChain *filterChain, c *DmConnection) (*DmConnection, error) {
 	dc, err := filterChain.DmConnectionBegin(c)
 	if err != nil {
@@ -282,7 +282,7 @@ func (rf *reconnectFilter) DmConnectionCheckNamedValue(filterChain *filterChain,
 	return err
 }
 
-//DmStatement
+// DmStatement
 func (rf *reconnectFilter) DmStatementClose(filterChain *filterChain, s *DmStatement) error {
 	err := filterChain.DmStatementClose(s)
 	if err != nil {
@@ -362,7 +362,7 @@ func (rf *reconnectFilter) DmStatementCheckNamedValue(filterChain *filterChain, 
 	return err
 }
 
-//DmResult
+// DmResult
 func (rf *reconnectFilter) DmResultLastInsertId(filterChain *filterChain, r *DmResult) (int64, error) {
 	i, err := filterChain.DmResultLastInsertId(r)
 	if err != nil {
@@ -383,7 +383,7 @@ func (rf *reconnectFilter) DmResultRowsAffected(filterChain *filterChain, r *DmR
 	return i, err
 }
 
-//DmRows
+// DmRows
 func (rf *reconnectFilter) DmRowsColumns(filterChain *filterChain, r *DmRows) []string {
 	var ret []string
 	defer func() {
