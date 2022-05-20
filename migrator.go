@@ -2,17 +2,18 @@ package dm
 
 import (
 	"fmt"
-	"gorm.io/gorm/schema"
 	"strconv"
 	"strings"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/migrator"
+	"gorm.io/gorm/schema"
 )
 
 type Migrator struct {
 	migrator.Migrator
+	Dialector
 }
 
 type BuildIndexOptionsInterface interface {
@@ -62,9 +63,9 @@ func (m Migrator) CreateIndex(value interface{}, name string) error {
 				createIndexSQL += " USING " + idx.Type
 			}
 
-			//if idx.Comment != "" {
+			// if idx.Comment != "" {
 			//	createIndexSQL += fmt.Sprintf(" COMMENT '%s'", idx.Comment)
-			//}
+			// }
 
 			if idx.Option != "" {
 				createIndexSQL += " " + idx.Option
@@ -120,7 +121,7 @@ func (m Migrator) CreateTable(values ...interface{}) error {
 				if m.CreateIndexAfterCreateTable {
 					defer func(value interface{}, name string) {
 						if errr == nil {
-							//errr = tx.Migrator().CreateIndex(value, name)
+							// errr = tx.Migrator().CreateIndex(value, name)
 							errr = m.CreateIndex(value, name)
 						}
 					}(value, idx.Name)

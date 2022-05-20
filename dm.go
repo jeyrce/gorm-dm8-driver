@@ -192,16 +192,17 @@ func (d Dialector) Migrator(db *gorm.DB) gorm.Migrator {
 				CreateIndexAfterCreateTable: true,
 			},
 		},
+		Dialector: d,
 	}
 }
 
 func (d Dialector) BindVarTo(writer clause.Writer, stmt *gorm.Statement, v interface{}) {
-	writer.WriteString(":")
-	writer.WriteString(strconv.Itoa(len(stmt.Vars)))
+	_, _ = writer.WriteString(":")
+	_, _ = writer.WriteString(strconv.Itoa(len(stmt.Vars)))
 }
 
 func (d Dialector) QuoteTo(writer clause.Writer, str string) {
-	writer.WriteString(str)
+	_, _ = writer.WriteString(str)
 }
 
 var numericPlaceholder = regexp.MustCompile(`:(\d+)`)
